@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Small Begin</title>
+
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+
+    <!-- navbar 및 전체 css 관련 !-->
+    <link th:href="@{/css/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/navbar.css}" rel="stylesheet" />
+    <link th:href="@{/css/footer.css}" rel="stylesheet" />
+    <link th:href="@{/css/calendar.css}" rel="stylesheet" />
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/calendar.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+</head>
+<body>
+<div id="container">
+
+    <div th:replace="/fragment/navbar.html :: fragment-nav"></div>
+
+    <div class="main">
+        <div class="content-wrap">
+            <div class="content-left">
+                <div class="main-wrap">
+                    <div id="main-day" class="main-day"></div>
+                    <div id="main-date" class="main-date"></div>
+                    <p id="selected-date" style="display: none"></p>
+                    <p id="selected-date-show" style="display: none"></p>
+                </div>
+                <div class="todo-wrap">
+                    <div class="todo-title">Todo List</div>
+                    <div class="input-wrap">
+                        <form method="post" id="toDoList">
+                            <input type="text" placeholder="please write here!!" id="input-box" class="input-box" name="toDoList">
+                            <button type="button" id="input-data" class="input-data">INPUT</button>
+                        </form>
+                    </div>
+                </div>
+                <table id="toDoTable">
+                    <tr th:each="todo: ${todo}">
+                        <td th:value="${todo.toDoColor}"></td>
+                        <td th:value="${todo.toDoState}"></td>
+                        <td th:value="${todo.toDoContent}"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="content-right">
+                <table id="calendar" align="center">
+                    <thead>
+                    <tr class="btn-wrap clearfix">
+                        <td>
+                            <label id="prev">
+                                &#60;
+                            </label>
+                        </td>
+                        <td align="center" id="current-year-month" colspan="5"></td>
+                        <td>
+                            <label id="next">
+                                &#62;
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class = "sun" align="center">Sun</td>
+                        <td align="center">Mon</td>
+                        <td align="center">Tue</td>
+                        <td align="center">Wed</td>
+                        <td align="center">Thu</td>
+                        <td align="center">Fri</td>
+                        <td class= "sat" align="center">Sat</td>
+                    </tr>
+                    </thead>
+                    <tbody id="calendar-body" class="calendar-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer th:replace="/fragment/footer.html :: fragment-footer"></footer>
+
+</body>
+
+<script>
+    showCalendar();
+    clickStart();
+
+    var selectedDate = document.getElementById("selected-date").innerText;
+    console.log("selectedDate - html reshowing");
+    console.log(selectedDate);
+    reshowingList(selectedDate);
+
+    $("#prev").click(function(){
+        prev();
+    })
+
+    $("#next").click(function(){
+        next();
+    })
+
+/*    $("#input-data").click(function(){
+        readForm("toDoList", "/toDoList");
+        addTodoList();
+        //readFormTodo("toDoList", "/toDoList");
+        console.log("input btn is clicked + ajax");
+    })*/
+
+    $("#calendar-body").click(function(event){
+        console.log("changeToday");
+        changeToday(event);
+    })
+</script>
+</html>
+

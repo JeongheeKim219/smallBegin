@@ -11,13 +11,13 @@
                 initiative(
                 ini_code,
                 ob_code,
-                date_list_code,
-                ini_duration,
                 ini_period,
+                date_list_code,
+                month_list_code,
+                ini_duration,
                 ini_count,
                 ini_order,
                 ini_content,
-                ini_month_date,
                 ini_start_date,
                 ini_end_date,
                 ini_possible_count,
@@ -26,26 +26,41 @@
             VALUES(
                 (select IFNULL(MAX(a.ini_code), 0) + 1 FROM initiative a),
                 #{obCode},
-                (select IFNULL(MAX(b.date_list_code), 0) + 1 FROM date_list b),
-                4,
                 #{iniPeriod},
+        <choose>
+            <when test="iniPeriod == 0">
+                NULL,
+                NULL,
+            </when>
+            <when test="iniPeriod == 1">
+                (select IFNULL(MAX(b.date_list_code), 0) + 1 FROM date_list b),
+                NULL,
+            </when>
+            <when test="iniPeriod == 2">
+                NULL,
+                (select IFNULL(MAX(b.month_list_code), 0) + 1 FROM month_list b),
+            </when>
+        </choose>
+                #{iniDuration},
                 NULL,
                 0,
                 #{iniContent},
-                NULL,
                 #{iniStartDate},
                 #{iniEndDate},
                 #{iniPossibleCount},
                 NULL);
     </insert>
 
-    <select id="selectRecentDateListCodeAndIniCode" parameterType="hashMap" resultType="hashMap">
+    <select id="selectDateListCodeOrMonthListCode" parameterType="hashMap" resultType="hashMap">
         SELECT
-            max(date_list_code) as dateListCode
+            date_list_code as dateListCode,
+            month_list_code as monthListCode
         FROM
             initiative
         WHERE
-            ob_code = #{obCode};
+            ini_code = (SELECT MAX(a.ini_code)
+                        FROM initiative a
+                        WHERE ob_code =  #{obCode});
     </select>
 
 </mapper>

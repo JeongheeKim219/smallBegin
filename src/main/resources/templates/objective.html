@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="eur-ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Small Begin</title>
+
+<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+
+<!-- navbar 및 전체 css 관련 !-->
+<link th:href="@{/css/common.css}" rel="stylesheet" />
+<link th:href="@{/css/navbar.css}" rel="stylesheet" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/objective.css}" rel="stylesheet" />
+<script th:src="@{/js/navbar.js}"></script>
+<script th:src="@{/js/objective.js}"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+<div id="container">
+    <!-- nav bar !-->
+    <div th:replace="/fragment/navbar.html :: fragment-nav"></div>
+    <div id="formCss">
+        <form method="post" id="obForm">
+            <span th:value="${category.categoryCode}" th:text="${category.categoryName}"
+            name="categoryCode" id="categoryCode"></span>
+            &nbsp; &nbsp;<span>기간을 정하고 목표와 측정 가능한 성과를 입력하세요</span> <br>
+            <input type="date" id="obStartDate" name="obStartDate" class="form">
+            <input type="date" id="obEndDate" name="obEndDate" class="form"> <br>
+            <input type="text" id="obContent" name="obContent" class="form" placeholder="목표를 적어주세요">
+
+            <h4>측정값</h4>
+            <span>목표 측정 값을 최대 3개 적어주세요</span>
+            <div id="krAdd">
+                <input type="text" class="keyResult" name="keyResult1" placeholder="목표값을 입력하면 + 버튼이 생성됩니다">
+                &nbsp;<span class="material-icons-outlined" id="krbtn1">add</span><br>
+            </div>
+            <div id="krAdd2">
+                <input type="text" class="keyResult" name="keyResult2" placeholder="목표값을 입력하면 + 버튼이 생성됩니다">
+                &nbsp;<span class="material-icons-outlined" id="krbtn2">add</span><br>
+            </div>
+            <div id="krAdd3">
+                <input type="text" class="keyResult" name="keyResult3" placeholder="목표값을 입력하면 + 버튼이 생성됩니다">
+                &nbsp;<span class="material-icons-outlined" id="krbtn3">add</span><br>
+            </div>
+            <br>
+            <input type="button" id="obClick" value="+ 할 일 정하기" class="buttons">
+        </form>
+    </div>
+</div>
+<footer th:replace="/fragment/footer.html :: fragment-footer"></footer>
+</body>
+</html>
+

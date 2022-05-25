@@ -7,6 +7,6 @@ import java.util.Map;
 
 @Mapper
 @Repository
-public interface DateListMapper {
-    void insertDateList(Map<String, Object> map);
+public interface MonthListMapper {
+    void insertMonthList(Map<String, Object> list);
 }

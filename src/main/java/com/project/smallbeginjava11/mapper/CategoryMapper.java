@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryMapper {
     List<Category> getAllCategory();
+    Category selectCategory(String code);
 }

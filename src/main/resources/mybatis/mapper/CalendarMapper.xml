@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.smallbeginjava11.mapper.CalendarMapper">
+
+    <select id="getTodoList" parameterType="String" resultType="Todo">
+        SELECT to_do_content, to_do_state, to_do_color FROM to_do where plan_date = #{selectedDate};
+    </select>
+
+</mapper>

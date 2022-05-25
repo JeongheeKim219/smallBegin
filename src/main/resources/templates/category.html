@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Small Begin</title>
+
+<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/colorCoding.js"></script>
+
+<!-- navbar 및 전체 css 관련 !-->
+<link th:href="@{/css/common.css}" rel="stylesheet" />
+<link th:href="@{/css/navbar.css}" rel="stylesheet" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<script th:src="@{/js/navbar.js}"></script>
+
+<style>
+  #categoryContainer{
+    text-align: center;
+  }
+  td{
+    cursor: pointer;
+  }
+  a:link {
+    color: #FFFAF0
+  }
+  a:visited{
+    color: #FFFAF0
+  }
+  a:hover{
+    color: #FFFAF0
+  }
+  a:active{
+    color: #FFFAF0
+  }
+</style>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+    var categoryList = [[${categoryList}]];
+  /*]]>*/
+
+  let result = 100;
+  for (let i=2; i<10; i=i+1){
+    result = result - i
+  }
+
+  alert(result);
+</script>
+</head>
+<body>
+<div id="categoryContainer">
+
+  <div th:replace="/fragment/navbar.html :: fragment-nav"></div>
+
+  <h2>이루고 싶은 목표의 카테고리를 선택해주세요</h2>
+<table id="categoryTable">
+  <tr>
+    <td th:each="category: ${categoryList}">
+      <div th:id="${category.categoryCode}">
+        <a th:href="@{/objective(code = ${category.categoryCode})}"
+           th:utext="${category.categoryName}">
+      </div>
+    </td>
+  </tr>
+</table>
+<footer th:replace="/fragment/footer.html :: fragment-footer"></footer>
+</body>
+
+<script th:inline="javascript">
+
+  changeColor(categoryList);
+
+
+
+/*    $.ajax({
+      url : "/objective/{code}",
+      type : "post",
+      dataType :"text",
+      success : function(result){
+        console.log("SUCCESS")
+      },
+      error : function(err){
+        console.log("ERROR");
+      }
+    });*/
+
+  /*$(function(){
+    $('input[name="categoryList"]').change(function(){
+      var categoryCode = $('input[name="categoryList"]:checked').val();
+      alert("categoryCode check : "+categoryCode);*/
+
+      //location.href 링크로 파라미터 보내기? Or 안보이는 폼 만들기?
+
+      // hidden 처리된 폼으로 카테고리 코드 전달
+    /*  var f = document.createElement('form');
+      var obj;
+      obj = document.createElement('input');
+      obj.setAttribute('type', 'hidden');
+      obj.setAttribute('name', categoryCode);
+      obj.setAttribute('value', categoryCode);
+
+      f.appendChild(obj);
+      f.setAttribute('method', 'post');
+      f.setAttribute('action', '/objective');
+      document.body.appendChild(f);
+      f.submit();
+      alert(categoryCode);*/
+/*    })
+  })*/
+</script>
+</html>
+

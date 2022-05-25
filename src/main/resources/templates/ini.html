@@ -40,9 +40,9 @@
                 <input type="date" id="iniEndDate" name="iniEndDate" class="form"><br>
 
                 <select name="iniPeriod" id="iniPeriod" size="1" class="form">
-                    <option value="0">매달</option>
+                    <option value="2">매달</option>
                     <option value="1">매주</option>
-                    <option value="2">매일</option>
+                    <option value="0">매일</option>
                 </select>
                 <span id="week" class="form">
                     <select name="week" id="week-pick" size="1">
@@ -83,6 +83,7 @@
                 <span class="form">반복 할 것이다.</span><br>
                 <input type="button" id="click" value="click" class="buttons">
                 <input type="button" id="add" value="목표 추가" class="buttons">
+<!--            <input type="button" value="click" onclick="ajaxTest()">-->
             </form>
         </div>
         <div id="otherContents">
@@ -113,10 +114,14 @@ $(function(){
     });
 
     $(".date-select-content").on("click", ".day", function(){
-        var dateListArray = selectDate($(this))
-        possibleDayCount($("#iniStartDate").val(), $("#iniEndDate").val(), dateListArray);
+        var dateListArray = selectDate($(this));
+        var possibleDateList = possibleDayCount($("#iniStartDate").val(), $("#iniEndDate").val(), dateListArray);
+        sendDateList($("#iniStartDate").val(), $("#iniEndDate").val(), possibleDateList, "/receiveDateList")
     });
 
+    $("#click").on("click", function(){
+        readForm("#iniForm", "/readForm");
+    });
 
 
     $("#iniPeriod").change(function(){
@@ -140,9 +145,6 @@ $(function(){
         }
     });
 
-    $("#click").click(function(){
-        readForm("#iniForm", "/readForm");
-    });
 
 });
 

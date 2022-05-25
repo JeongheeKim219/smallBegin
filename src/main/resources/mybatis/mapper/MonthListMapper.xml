@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.smallbeginjava11.mapper.MonthListMapper">
+    <insert id="insertMonthList" parameterType="hashMap">
+        INSERT
+            INTO
+                month_list(
+                month_list_code,
+                month_list_detail_code,
+                month_date
+                )
+            VALUES
+            <foreach collection = "monthDateList" item="item" separator=",">
+                (#{monthListCode},
+                (SELECT IFNULL(MAX(a.month_list_detail_code), 0) + 1
+                FROM month_list a
+                WHERE a.month_list_code = #{monthListCode}),
+                STR_TO_DATE(#{item}, '%Y-%m-%d'))
+            </foreach>
+    </insert>
+</mapper>
