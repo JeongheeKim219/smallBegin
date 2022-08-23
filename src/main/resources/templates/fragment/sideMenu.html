@@ -1,18 +1,70 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<meta charset="UTF-8">
+<title>Title</title>
+
+<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+
+<!-- navbar 및 전체 css 관련 !-->
+<link th:href="@{/css/common.css}" rel="stylesheet" />
+<link th:href="@{/css/navbar.css}" rel="stylesheet" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/calendar1.css}" rel="stylesheet" />
+<link th:href="@{/css/resetCSS.css}" rel="stylesheet" />
+<script th:src="@{/js/navbar.js}"></script>
+<script th:src="@{/js/calendar1.js}"></script>
+<script th:src="@{/js/infiniteScroll.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+
 </head>
-<link rel="stylesheet" href="../../static/css/sideMenu.css">
+<!--<link rel="stylesheet" href="../../static/css/sideMenu.css">-->
 <body>
-<nav id="primary_nav_wrap">
-    <ul>
-        <li class="current-menu-item"><a href="#">Home</a></li>
-        <li><a href="#">Menu 1</a>
-        <li><a href="#">Menu 2</a>
-        <li><a href="#">Menu 3</a>
-    </ul>
-</nav>
+<div th:fragment = "sideMenuFragment">
+    <div class="content-left">
+        <div class="main-wrap">
+            <span id="main-day" class="main-day"></span>
+            <span id="main-year" class="main-day"></span>
+            <span id="main-month" class="main-month"></span> &nbsp;
+            <span id="main-date" class="main-date"></span> &nbsp;
+        </div>
+        <div class="todo-wrap">
+            <div class="todo-title">You can add "todo list" here</div>
+            <div class="input-wrap">
+                <form method="post" id="toDoList">
+                    <input type="text" placeholder="please write here" id="toDoContent" class="input-box" name="toDoContent">
+                    <input type="date" id="setUpDate" class="input-box" name="setUpDate">
+                    <input type="date" id="planDate" class="input-box" name="planDate" style="display: none"></input>
+                    <input type="color" id="toDoColor" name="toDoColor" value="#16aaad" list="colors4palette" />
+                    <datalist id="colors4palette">
+                        <option>#355070</option>
+                        <option>#6D597A</option>
+                        <option>#B56576</option>
+                        <option>#E56B6F</option>
+                        <option>#EAAC8B</option>
+                    </datalist>
+                    <button type="button" id="input-data" class="input-data">INPUT</button>
+                </form>
+                <table id="toDoListsTable">
+                </table>
+                <table id="toDoTable">
+                    <tr th:each="todo: ${todo}">
+                        <td th:value="${todo.toDoColor}"></td>
+                        <td th:value="${todo.toDoState}"></td>
+                        <td th:value="${todo.toDoContent}"></td>
+                    </tr>
+                </table>
+                <table id="iniAndObTable">
+<!--                    <tr>-->
+<!--                        <td>Ob Content</td><td>Ini Content</td><td>State</td>-->
+<!--                    </tr>-->
+<!--                    <tbody id="ini-body"></tbody>-->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

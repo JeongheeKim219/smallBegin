@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Small Begin</title>
+
+  <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/common.js"></script>
+
+  <!-- navbar 및 전체 css 관련 !-->
+  <link th:href="@{/css/common.css}" rel="stylesheet" />
+  <link th:href="@{/css/navbar.css}" rel="stylesheet" />
+  <link th:href="@{/css/footer.css}" rel="stylesheet" />
+  <script th:src="@{/js/navbar.js}"></script>
+<script type = "text/javascript"></script>
+<sctipt>
+
+
+
+
+</sctipt>
+</head>
+<body>
+<div id="container">
+
+  <div th:replace="/fragment/navbar.html :: fragment-nav"></div>
+
+</div>
+
+<footer th:replace="/fragment/footer.html :: fragment-footer"></footer>
+
+</body>
+</html>
+

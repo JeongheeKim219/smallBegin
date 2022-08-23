@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Small Begin</title>
+
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+
+    <!-- navbar 및 전체 css 관련 !-->
+    <link th:href="@{/css/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/navbar.css}" rel="stylesheet" />
+    <link th:href="@{/css/footer.css}" rel="stylesheet" />
+    <script th:src="@{/js/navbar.js}"></script>
+
+</head>
+<body>
+<div id="container">
+
+    <div th:replace="/fragment/navbar.html :: fragment-nav"></div>
+
+    <div id="formCss">
+        <form method="post" id="login">
+            <span>ID</span> &nbsp; &nbsp; &nbsp; <input type="text" id="userId" name="userId" class="form" size="25"><br>
+            <span>Password</span> &nbsp; &nbsp; &nbsp; <input type="text" id="password" name="password" class="form" size="25"><br>
+            <input type="button" id="click" value="sumbit" class="buttons">
+        </form>
+        <div id="find">
+            <span>Find ID</span> &nbsp;<span>/</span> &nbsp; <span>PW</span>
+        </div>
+    </div>
+
+</div>
+
+<footer th:replace="/fragment/footer.html :: fragment-footer"></footer>
+
+<script src="/js/iniForm.js"></script>
+<script>
+    $("#click").click(function(){
+        readForm("#login", "/login");
+    })
+</script>
+
+</body>
+</html>

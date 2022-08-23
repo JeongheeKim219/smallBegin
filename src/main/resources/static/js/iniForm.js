@@ -24,6 +24,8 @@ function duration(){
     let selected, minDate, maxDate, yyyy, mm, dd;
     selected = document.getElementById("iniStartDate").value;
 
+    console.log("duration function");
+
     yyyy = selected.slice(0,4);
     yyyy *= 1;
     yyyy += 1;
@@ -31,16 +33,17 @@ function duration(){
     dd = selected.slice(-2);
 
     maxDate = yyyy + "-" + mm + "-" + dd;
-
+    console.log("maxDate");
+    console.log(maxDate);
     yyyy -= 1;
 
     minDate = yyyy + "-" + mm + "-" + dd;
-
+    console.log("minDate")
     console.log(minDate);
 
     document.getElementById("iniEndDate").setAttribute("max", maxDate);
     document.getElementById("iniEndDate").setAttribute("min", minDate);
-    document.getElementById("iniEndDate").setAttribute("value", maxDate);
+    //document.getElementById("iniEndDate").setAttribute("value", maxDate);
 }
 
 function everyday(){

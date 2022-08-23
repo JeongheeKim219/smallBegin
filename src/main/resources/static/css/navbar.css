@@ -1,9 +1,9 @@
 
 .navigation {
-    height: 70px;
+    height: 80px;
     background: #ffffff;
     border-bottom: 1px solid black;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 .brand {
     position: absolute;
@@ -21,16 +21,16 @@
     max-width: 1200px;
     margin: 0 auto;
 }
-/*nav {
+nav {
     float: right;
-}*/
+}
 nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 nav ul li {
-    float: right;
+    float: left;
     position: relative;
 }
 nav ul li a, nav ul li a:visited {
@@ -108,6 +108,7 @@ nav ul li ul li a {
     top: 22px;
     cursor: pointer;
     padding: 10px 35px 16px 0px;
+    z-index: 0;
 }
 #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
     cursor: pointer;

@@ -5,14 +5,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
-
-    private int categoryCode;
-    private String categoryColor;
-    private String categoryName;
-
+public class Todo {
+    int toDoCode;
+    int memberCode;
+    String toDoContent;
+    Date setUpDate;
+    int toDoState;
+    String toDoColor;
+    Date doneDate;
+    Date planDate;
 }

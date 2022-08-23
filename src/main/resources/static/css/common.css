@@ -2,18 +2,79 @@
 *{
     font-family: 'Noto Sans KR', sans-serif;
 }
-#formCss{
+
+/* a 태그로 링크시 text decoration 해제 */
+a {
+  text-decoration: none;
+}
+
+
+/*Icon 관련*/
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+.material-icons, .material-icons-outlined {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+/* 2022년 7월 29일 추가 */
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+#container{
+    /* margin-bottom: 45px; */
+    /* 2022년 7월 29일 추가 */
+    height: 100%;
+}
+#formCss, #otherContents{
     width: 700px;
     margin: 20px auto;
     text-align: center;
 }
-.form{
-    margin: 5px;
-    padding: 1px;
+section{
+/*    width: 1000px;*/
+    margin: 0 auto;
+    text-align: center;
 }
 input{
     border: none;
     border-bottom: 1px solid #000000;
+    margin: 5px;
+    padding: 1px;
+}
+input#date {
+    margin: 0 auto;
 }
 input:focus{
     outline: none;
@@ -40,7 +101,37 @@ select:focus{
     color: #000000;
     border-bottom: 1px solid #000000;
 }
+#day-pick {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
 
+.joinInput{
+    width: 250px;
+    text-align: right;
+}
+
+
+
+/*input[type="checkbox"]{
+    display: none;
+}
+input[type="checkbox"]+ label {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border:1px solid #000;
+    position: relative;
+}
+input[type="checkbox"]:checked + label::after {
+    content:'✔';
+    font-size: 10px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top:0;
+}*/
+/*
 input[type="checkbox"] {
     margin: 0;
     -webkit-appearance: none;
@@ -67,8 +158,7 @@ input[type="checkbox"]:checked {
     border-color: #000000;
     color: #000000;
 }
-
 input[type="checkbox"]:checked::before {
     border-radius: 2px;
     transform: scale(1) translate(-50%, -50%)
-}
+}*/

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.smallbeginjava11.mapper.CalendarMapper">
+
+    <select id="getTodoList" parameterType="String" resultType="Todo">
+        SELECT to_do_content, to_do_state, to_do_color FROM to_do where set_up_date = #{selectedDate};
+    </select>
+
+    <insert id="inputTodoList" parameterType="hashMap">
+        INSERT INTO to_do(
+                          to_do_code,
+                          member_code,
+                          to_do_content,
+                          set_up_date,
+                          to_do_state,
+                          to_do_color,
+                          done_date
+        )
+        VALUES(
+               (select IFNULL(MAX(a.to_do_code), 0) + 1 FROM to_do a),
+               2,
+               #{toDoContent},
+               #{setUpDate},
+               0,
+               #{toDoColor},
+               0000-00-00
+              )
+    </insert>
+
+    <select id="selectIniAndObList" parameterType="hashMap" resultType="Calendar">
+        SELECT
+            a.ob_content,
+            b.ini_content,
+            d.ini_dtl_add_code,
+            d.ini_dtl_add_state
+        FROM
+            objective a,
+            (SELECT ini_code, ini_content, ob_code
+            FROM initiative) b,
+            (SELECT ini_code, ini_dtl_code
+            FROM ini_detail) c,
+            (SELECT ini_dtl_code, ini_dtl_add_code, ini_dtl_add_state
+            FROM ini_detail_add
+            WHERE ini_dtl_add_plan_date = date(#{iniDetailAddPlanDate})) d
+        WHERE
+            a.member_code = #{memberCode}
+            AND a.ob_code = b.ob_code
+            AND b.ini_code = c.ini_code
+            AND c.ini_dtl_code = d.ini_dtl_code;
+    </select>
+
+
+</mapper>
